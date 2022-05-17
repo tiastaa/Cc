@@ -1,73 +1,77 @@
 using System;
 
-namespace ConsoleApp1
+namespace YovbakNika
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
-        { 
-            int value = int.Parse(Console.ReadLine());
-            //Введення реалізовано за допомогою конструктора
-            Number numb1 = new Number(value);
-            Console.WriteLine("Amount={0}", numb1.Amount());
-            Console.WriteLine("Sum={0}", numb1.Sum());
-            numb1.Output(); 
-
-        }
-    }
-    class Number
-    {
-        private int numb;
-        public Number(int numb)
         {
-            this.Numb = numb;
-        }
-        public int Numb
-    {
-        get
-        { 
-            return numb;
-        }
-        set
-        {
-            if(value<0)
-                {
-                    throw new Exception("Число не натуральне");
-                }
-            else
-                {
-                    numb = value;
-                }
-            
-                
-        }
-    }
-
-        public int Sum()
-        {
-            int s = 0;
-            int n = Numb;
-
-            while (n > 0)
+            Console.WriteLine(" Задача 1");
+            Console.Write("Введіть кількість елементів масива = ");
+            int number = int.Parse(Console.ReadLine());
+            int[] a = new int[number];
+            int k = 0;
+            Random rnd =new Random();
+            for (int i = 0; i <number; i++)
             {
-                s = s + n % 10;
-                n = n / 10;
+               
+                int x=rnd.Next(101);
+                a[i] = x;
+                if (x % 2 == 0)
+                    k++;
             }
 
-            return s;
-        }
+            for (int i = 0; i < number; i++)
+            {
 
-        public int Amount()
-        {
-           
-            return Numb.ToString().Length;
-        }
-        public void Output()
-        {
-            Console.WriteLine(Numb);
-        }
+                Console.Write($"{a[i]} ");
+
+            }
+    
+
+            Console.WriteLine($"Відповідь : {k}");
+
+            Console.WriteLine(" Задача 2");
+            Console.Write(" n = ");
+            int n2 = int.Parse(Console.ReadLine());
+            Console.Write(" m = ");
+            int m2 = int.Parse(Console.ReadLine());
+            int[,] a2 = new int[n2,m2];
+            for(int i=0; i<n2; i++)
+            {
+                for (int j = 0; j < m2; j++)
+                {
+                   int  x=rnd.Next(-100,101);
+                    a2[i, j] = x;
+
+                    Console.Write($"{x} ");
+                }
+                Console.WriteLine();
+            }
+            for (int i = 0; i < n2; i++)
+            {
+                for (int j = 0; j < m2; j++)
+                {
+                    if (a2[i, j] < 0 && i + j <= 4 && i+j>=1)
+                        a2[i, j] = i + j;
+
+                }
+
+            }
+            Console.WriteLine("Відповідь : ");
+            for (int i = 0; i < n2; i++)
+            {
+                for (int j = 0; j < m2; j++)
+                {
+              
+
+                    Console.Write($"{a2[i,j]} ");
+                }
+                Console.WriteLine();
+            }
 
 
+
+        }
     }
 }
-
