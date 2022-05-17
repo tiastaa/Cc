@@ -1,64 +1,73 @@
 using System;
+
 namespace ConsoleApp1
 {
-internal class Program
-{
-static void Main(string[] args)
-{
-int value = int.Parse(Console.ReadLine());
-//Введення реалізовано за допомогою конструктора
-Number numb1 = new Number(value);
-Console.WriteLine(&quot;Amount={0}&quot;, numb1.Amount());
-Console.WriteLine(&quot;Sum={0}&quot;, numb1.Sum());
-numb1.Output();
-}
-}
-class Number
-{
-private int numb;
-public Number(int numb)
-{
-this.Numb = numb;
-}
-public int Numb
-{
-get
-{
-return numb;
-}
-set
-{
-if(value&lt;0)
-{
-throw new Exception(&quot;Число не натуральне&quot;);
-}
-else
-{
-numb = value;
+    internal class Program
+    {
+        static void Main(string[] args)
+        { 
+            int value = int.Parse(Console.ReadLine());
+            //Введення реалізовано за допомогою конструктора
+            Number numb1 = new Number(value);
+            Console.WriteLine("Amount={0}", numb1.Amount());
+            Console.WriteLine("Sum={0}", numb1.Sum());
+            numb1.Output(); 
+
+        }
+    }
+    class Number
+    {
+        private int numb;
+        public Number(int numb)
+        {
+            this.Numb = numb;
+        }
+        public int Numb
+    {
+        get
+        { 
+            return numb;
+        }
+        set
+        {
+            if(value<0)
+                {
+                    throw new Exception("Число не натуральне");
+                }
+            else
+                {
+                    numb = value;
+                }
+            
+                
+        }
+    }
+
+        public int Sum()
+        {
+            int s = 0;
+            int n = Numb;
+
+            while (n > 0)
+            {
+                s = s + n % 10;
+                n = n / 10;
+            }
+
+            return s;
+        }
+
+        public int Amount()
+        {
+           
+            return Numb.ToString().Length;
+        }
+        public void Output()
+        {
+            Console.WriteLine(Numb);
+        }
+
+
+    }
 }
 
-}
-}
-public int Sum()
-{
-
-int s = 0;
-int n = Numb;
-while (n &gt; 0)
-{
-s = s + n % 10;
-n = n / 10;
-}
-return s;
-}
-public int Amount()
-{
-return Numb.ToString().Length;
-}
-public void Output()
-{
-Console.WriteLine(Numb);
-}
-
-}
-}
