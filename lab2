@@ -1,0 +1,65 @@
+using System;
+namespace YovbakNika
+{
+class Program
+{
+static void Main(string[] args)
+{
+Console.WriteLine(&quot; Задача 1&quot;);
+Console.Write(&quot;Введіть кількість елементів масива = &quot;);
+int number = int.Parse(Console.ReadLine());
+int[] a = new int[number];
+int k = 0;
+Random rnd =new Random();
+for (int i = 0; i &lt;number; i++)
+{
+int x=rnd.Next(101);
+a[i] = x;
+if (x % 2 == 0)
+k++;
+}
+for (int i = 0; i &lt; number; i++)
+{
+Console.Write($&quot;{a[i]} &quot;);
+}
+
+Console.WriteLine($&quot;Відповідь : {k}&quot;);
+Console.WriteLine(&quot; Задача 2&quot;);
+Console.Write(&quot; n = &quot;);
+int n2 = int.Parse(Console.ReadLine());
+Console.Write(&quot; m = &quot;);
+int m2 = int.Parse(Console.ReadLine());
+int[,] a2 = new int[n2,m2];
+for(int i=0; i&lt;n2; i++)
+{
+for (int j = 0; j &lt; m2; j++)
+{
+int x=rnd.Next(-100,101);
+a2[i, j] = x;
+
+Console.Write($&quot;{x} &quot;);
+}
+Console.WriteLine();
+}
+for (int i = 0; i &lt; n2; i++)
+{
+for (int j = 0; j &lt; m2; j++)
+{
+if (a2[i, j] &lt; 0 &amp;&amp; i + j &lt;= 4 &amp;&amp; i+j&gt;=1)
+a2[i, j] = i + j;
+}
+}
+Console.WriteLine(&quot;Відповідь : &quot;);
+for (int i = 0; i &lt; n2; i++)
+{
+for (int j = 0; j &lt; m2; j++)
+{
+
+Console.Write($&quot;{a2[i,j]} &quot;);
+}
+Console.WriteLine();
+}
+
+}
+}
+}
