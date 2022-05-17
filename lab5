@@ -1,0 +1,154 @@
+using System;
+
+namespace ConsoleApp10
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //гіпотенуза = с , так як кут 90* загальноприйнято називати С
+            //var p1 = new TPTriangle();
+            //var p2 = new TPTriangle(1, 4, 5);
+            //var p3 = new TPTriangle(p2);
+            //Console.WriteLine(p1);
+            //Console.WriteLine(p2);
+            //Console.WriteLine(p3);
+            //Console.WriteLine(TPTriangle.count);
+
+            //p3.SetValue(5, 6, 7);
+            //Console.WriteLine(TPTriangle.Square(p3));
+            //Console.WriteLine(p1);
+            //Console.WriteLine(TPTriangle.Perimeter(p3));
+
+            //p1 = 3 * p1 + p2;
+            //Console.WriteLine(p1);
+
+            
+            var p4 = new TPPiramid(3,4,5,6);
+            //Console.WriteLine(TPTriangle.Square(p4));
+            Console.WriteLine(TPPiramid.Volume(p4));
+            Console.ReadLine();
+        }
+
+
+        internal class TPTriangle
+        {
+            public static int count;
+
+
+            private double a;
+            private double b;
+            private double c;
+
+            public double A { get { return a; } set { a = value; } }
+            public double B { get { return b; } set { b = value; } }
+            public double C { get { return c; } set { c = value; } }
+
+            public TPTriangle()
+            {
+                a = 1;
+                b = 1;
+                c = 1;
+                count++;
+            }
+            public TPTriangle(double aa, double bb, double cc)
+            {
+                a = aa;
+                b = bb;
+                c = cc;
+                count++;
+            }
+            public TPTriangle(TPTriangle p)
+            {
+                a = p.a;
+                b = p.b;
+                c = p.c;
+
+                count++;
+            }
+            static TPTriangle()
+            {
+                count = 0;
+            }
+
+
+            public override string ToString()
+            {
+                return string.Format($"a={a} b={b} c={c}");
+            }
+            public void SetValue(double aa, double bb, double cc)
+            {
+                a = aa;
+                b = bb;
+                c = cc;
+            }
+
+            public static double Square(TPTriangle p)
+            {
+                double miniperimetp = (p.a + p.b + p.c) / 2;
+                return Math.Sqrt(miniperimetp * (miniperimetp - p.a) * (miniperimetp - p.b) * (miniperimetp - p.c));
+            }
+            public static double Perimeter(TPTriangle p)
+            {
+                return p.a + p.b + p.c;
+            }
+
+            public bool IsEqual(TPTriangle p)
+            {
+                if (a == p.a && b == p.b)
+                {
+                    if (c == p.c)
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+
+            }
+            public static TPTriangle operator +(TPTriangle p1, TPTriangle p2)
+            {
+                return new TPTriangle(p1.a + p2.a, p1.b + p2.b, p1.c + p2.c);
+            }
+            public static TPTriangle operator -(TPTriangle p1, TPTriangle p2)
+            {
+                return new TPTriangle(p1.a - p2.a, p1.b - p2.b, p1.c - p2.c);
+            }
+            public static TPTriangle operator *(TPTriangle p1, double d)
+            {
+                return new TPTriangle(p1.a * d, p1.b * d, p1.c * d);
+            }
+            public static TPTriangle operator *(double d, TPTriangle p1)
+            {
+                return new TPTriangle(p1.a * d, p1.b * d, p1.c * d);
+            }
+
+        }
+
+        public class TPPiramid : TPTriangle
+        {
+            private double h;
+
+            public double H { get { return h; } set { h = value; } }
+
+            public TPPiramid(double aa, double bb, double cc, double hh) : base(aa,bb ,cc )
+            {
+                h = hh;
+            }
+            public TPPiramid(TPPiramid p)
+            {
+
+                h = p.h;
+
+            }
+            public static double Volume(TPPiramid p)
+            {
+                return (1.0/3.0)*p.h* TPTriangle.Square(p) ;
+            }
+
+
+
+        }
+
+    }
+}
