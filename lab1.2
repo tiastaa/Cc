@@ -1,29 +1,35 @@
 using System;
+
 namespace ConsoleApp5
 {
-internal class Program
-{
-static void Main(string[] args)
-{
-Console.Write(&quot; a = &quot;);
-int a = int.Parse(Console.ReadLine());
-Console.Write(&quot; b = &quot;);
-int b = int.Parse(Console.ReadLine());
-Console.Write(&quot; c = &quot;);
-int c = int.Parse(Console.ReadLine());
-int y = Minint(Minint(Math.Abs(a + b), Math.Abs(a + c)), a + b + c); ;
-Console.WriteLine(&quot;y = {0}&quot;, y);
-}
-static int Minint (int numb1, int numb2)
-{
-int min = 0;
-if (numb1 &lt;= numb2)
-min = numb1;
-if (numb2 &lt; numb1)
-min= numb2;
-return min;
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write(" a = ");
+            int a = int.Parse(Console.ReadLine());
+            Console.Write(" b = ");
+            int b = int.Parse(Console.ReadLine());
+            Console.Write(" c = ");
+            int c = int.Parse(Console.ReadLine());
 
-}
+            int y = Minint(Minint(Math.Abs(a + b), Math.Abs(a + c)), a + b + c); ;
+            Console.WriteLine("y = {0}", y);
 
-}
+        }
+       static int Minint (int numb1, int numb2)
+        {
+            int min = 0;
+            if (numb1 <= numb2)
+                min = numb1;
+            if (numb2 < numb1)
+                min= numb2;
+            return min;
+
+
+
+        }
+
+
+    }
 }
