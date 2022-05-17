@@ -1,0 +1,132 @@
+using System;
+
+namespace ConsoleApp11
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Введіть сумарну кількість паралелограмів та куль : ");
+            int n = int.Parse(Console.ReadLine());
+            Random rnd = new Random();
+            object[] arr;
+            arr = new object[n];
+            double sum = 0;
+
+            int parallelepipeds = rnd.Next(0,n);
+            for (int i = 0; i < parallelepipeds; i++)
+            {
+                var x = new Tparallelepiped(rnd.Next(1,10), rnd.Next(1, 10), rnd.Next(1, 10));
+                arr[i] = x;
+                sum+= Tparallelepiped.Square(x) ;
+
+
+
+            }
+            for (int i = parallelepipeds; i < n; i++)
+            {
+                var x = new TBall(rnd.Next(1, 10));
+                arr[i] = x;
+                sum += TBall.Square(x);
+           
+            }
+            Console.WriteLine("Сумарна площа поверхонь всіх фігур : ");
+            Console.WriteLine(sum);
+            Console.ReadLine();
+
+
+
+
+        }
+
+        class TBody
+                    {
+
+
+                public static double Square(TBody p)
+                {
+                return 0;
+                }
+                public static double Volume(TBody p)
+                {
+                    return 0;
+                }
+
+
+                    }
+        class Tparallelepiped : TBody
+        {
+            private double a;
+            private double b;
+            private double h;
+
+            public Tparallelepiped(double aa, double bb, double hh) : base()
+            {
+                a = aa;
+                b = bb;
+                h = hh;
+            }
+            public Tparallelepiped(Tparallelepiped p)
+            {
+                a = p.a;
+                b = p.b;
+                h = p.h;
+
+            }
+            public double A { get { return a; } set { a = value; } }
+            public double B { get { return b; } set { b = value; } }
+            public double H { get { return h; } set { h = value; } }
+
+            public override string ToString()
+            {
+                return string.Format($"a={a} b={b} h={h}");
+            }
+
+            public static double Square(Tparallelepiped p)
+            {
+                return 2*(p.a*p.b+p.a*p.h+p.h*p.b);
+            }
+            public static double Volume(Tparallelepiped p)
+            {
+                return p.a*p.b*p.h;
+            }
+
+        }
+            class TBall : TBody
+            {
+                private double r;
+
+
+                public TBall(double rr) : base()
+                {
+                    r = rr;
+
+                }
+                public TBall(TBall p)
+                {
+                    r = p.r;
+
+
+                }
+            public double R { get { return r; } set { r = value; } }
+
+            public override string ToString()
+            {
+                return string.Format($"r={r}");
+            }
+
+
+            public static double Square(TBall p)
+                {
+                    return 4*3.14*p.r * p.r;
+                }
+                public static double Volume(TBall p)
+                {
+                    return (4.0/3.0)*3.14*p.r* p.r * p.r ;
+                }
+        }
+        
+
+    
+    }
+}
